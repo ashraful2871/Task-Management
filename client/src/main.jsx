@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import AddTask from "./components/AddTask";
 import ViewAllTask from "./components/ViewAllTask";
 import AuthProvider from "./provider/AuthProvider";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "/all-task",
         element: <ViewAllTask></ViewAllTask>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp></SignUp>,
       },
     ],
   },
