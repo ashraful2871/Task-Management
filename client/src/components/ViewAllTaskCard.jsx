@@ -9,6 +9,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
   const [loading, setLoading] = useState(false);
   const { _id, title, description, category, date } = task;
   const [isOpen, setIsOpen] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   // Open modal and reset fields for the selected task
   const openModal = () => {
@@ -65,13 +66,33 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     }
   };
 
+  // Function to truncate the description
+  const truncateDescription = (desc, length) => {
+    if (desc.length <= length) return desc;
+    return desc.slice(0, length) + "...";
+  };
+
   return (
     <>
       {/* Task Card */}
-      <div className="card bg-base-100 shadow-xl flex flex-col h-full">
+      <div className="card bg-base-100 shadow-xl flex flex-col h-[300px]">
         <div className="card-body flex flex-col flex-grow">
           <h2 className="card-title">{title}</h2>
-          <p>{description}</p>
+          {/* Show truncated or full description based on state */}
+          <p>
+            {showFullDescription
+              ? description
+              : truncateDescription(description, 50)}
+            {/* Toggle the text */}
+            {description.length > 50 && (
+              <button
+                className="text-blue-500 ml-2"
+                onClick={() => setShowFullDescription((prev) => !prev)}
+              >
+                {showFullDescription ? "See less" : "See more"}
+              </button>
+            )}
+          </p>
           <p>{category}</p>
           <p>{format(new Date(date), "dd MMM yyyy")}</p>
 
@@ -163,7 +184,6 @@ const ViewAllTaskCard = ({ task, refetch }) => {
                 </button>
               </div>
             </form>
-            {/* Form Ends Here */}
           </div>
         </div>
       )}
