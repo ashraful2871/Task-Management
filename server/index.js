@@ -30,14 +30,14 @@ async function run() {
     const userCollection = db.collection("users");
 
     //add task
-    app.post("/add-task", async (req, res) => {
+    app.post("/task", async (req, res) => {
       const { taskInfo } = req.body;
       const result = await taskCollection.insertOne(taskInfo);
       res.send(result);
     });
 
     //get all task
-    app.get("/all-task/:email", async (req, res) => {
+    app.get("/task/:email", async (req, res) => {
       const { email } = req.params;
       const query = { email: email };
       const result = await taskCollection.find(query).toArray();
@@ -45,7 +45,7 @@ async function run() {
     });
 
     ///delete task
-    app.delete("/delete-task/:id", async (req, res) => {
+    app.delete("/task/:id", async (req, res) => {
       const { id } = req.params;
       const query = {
         _id: new ObjectId(id),
@@ -55,7 +55,7 @@ async function run() {
     });
 
     //update data
-    app.patch("/update-task/:id", async (req, res) => {
+    app.patch("/task/:id", async (req, res) => {
       const { id } = req.params;
       const { title, description, selectCategory } = req.body;
       const filter = { _id: new ObjectId(id) };
@@ -83,7 +83,7 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );

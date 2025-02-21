@@ -1,10 +1,11 @@
 import axios from "axios";
+import { format } from "date-fns";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 const ViewAllTaskCard = ({ task, refetch }) => {
   const [selectCategory, setSelectCategory] = useState("");
-  const { _id, title, description, category } = task;
+  const { _id, title, description, category, date } = task;
   const [isOpen, setIsOpen] = useState(false);
 
   // Open modal and reset fields for the selected task
@@ -24,7 +25,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const { data } = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/delete-task/${id}`
+          `${import.meta.env.VITE_API_URL}/task/${id}`
         );
         if (data.deletedCount > 0) {
           Swal.fire({
@@ -45,7 +46,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     const description = formData.get("description");
     const editedTask = { title, description, selectCategory };
     const { data } = await axios.patch(
-      `${import.meta.env.VITE_API_URL}/update-task/${_id}`,
+      `${import.meta.env.VITE_API_URL}/task/${_id}`,
       editedTask
     );
     console.log(data);
@@ -68,6 +69,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
           <h2 className="card-title">{title}</h2>
           <p>{description}</p>
           <p>{category}</p>
+          <p>{format(new Date(date), "dd MMM yyyy")}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={openModal}>
               Edit

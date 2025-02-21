@@ -14,10 +14,9 @@ const AddTask = () => {
     const date = new Date();
     const taskInfo = { title, category, description, email, date };
     console.log(taskInfo);
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/add-task`,
-      { taskInfo }
-    );
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/task`, {
+      taskInfo,
+    });
     console.log(data);
   };
   console.log(category);

@@ -14,7 +14,7 @@ const ViewAllTask = () => {
     queryKey: ["all-task", user?.email],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/all-task/${user?.email}`
+        `${import.meta.env.VITE_API_URL}/task/${user?.email}`
       );
       return data;
     },
