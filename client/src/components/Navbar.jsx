@@ -2,15 +2,19 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { logOut } = useAuth();
+  const { user, logOut } = useAuth();
   const links = (
     <>
-      <li>
-        <NavLink to="/add-task">Add Task</NavLink>
-      </li>
-      <li>
-        <NavLink to="/all-task">View All Task</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/add-task">Add Task</NavLink>
+          </li>
+          <li>
+            <NavLink to="/all-task">View All Task</NavLink>
+          </li>
+        </>
+      )}
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>

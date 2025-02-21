@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Privet from "./privet/Privet";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-task",
-        element: <ViewAllTask></ViewAllTask>,
+        element: (
+          <Privet>
+            <ViewAllTask></ViewAllTask>
+          </Privet>
+        ),
       },
       {
         path: "/login",
@@ -51,6 +56,7 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
+        <Toaster></Toaster>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>
