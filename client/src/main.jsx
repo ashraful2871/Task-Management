@@ -10,6 +10,8 @@ import AuthProvider from "./provider/AuthProvider";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Privet from "./privet/Privet";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-task",
-        element: <AddTask></AddTask>,
+        element: (
+          <Privet>
+            <AddTask></AddTask>
+          </Privet>
+        ),
       },
       {
         path: "/all-task",

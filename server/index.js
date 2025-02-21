@@ -30,9 +30,18 @@ async function run() {
     const db = client.db("TaskDB");
     const taskCollection = db.collection("tasks");
 
+    //add task
     app.post("/add-task", async (req, res) => {
       const { taskInfo } = req.body;
       const result = await taskCollection.insertOne(taskInfo);
+      res.send(result);
+    });
+
+    //get all task
+    app.get("/all-task/:email", async (req, res) => {
+      const { email } = req.params;
+      const query = { email: email };
+      const result = await taskCollection.find(query).toArray();
       res.send(result);
     });
     // Send a ping to confirm a successful connection

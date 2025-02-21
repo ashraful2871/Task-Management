@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { logOut } = useAuth();
   const links = (
     <>
       <li>
@@ -10,13 +12,15 @@ const Navbar = () => {
         <NavLink to="/all-task">View All Task</NavLink>
       </li>
       <li>
-        <NavLink to="/log-out">Log Out</NavLink>
-      </li>
-      <li>
         <NavLink to="/login">Login</NavLink>
       </li>
       <li>
         <NavLink to="/sign-up">Sign Up</NavLink>
+      </li>
+      <li>
+        <button onClick={logOut} className="btn btn-sm">
+          Log Out
+        </button>
       </li>
     </>
   );

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const AddTask = () => {
+  const { user } = useAuth();
   const [category, setCategory] = useState("");
   const handleSubmitTask = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const title = formData.get("title");
     const description = formData.get("description");
-    const taskInfo = { title, category, description };
+    const email = user?.email;
+    const taskInfo = { title, category, description, email };
     console.log(taskInfo);
     const { data } = await axios.post(
       `${import.meta.env.VITE_API_URL}/add-task`,
