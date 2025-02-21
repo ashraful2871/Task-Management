@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
-  const { signUpUser, googleLogin } = useAuth();
+  const { signUpUser, googleLogin, updateUserProfile, setUser } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -15,8 +15,14 @@ const SignUp = () => {
 
     //signUp User
     signUpUser(email, password)
-      .then((result) => console.log(result.user))
-      .catch((error) => console.log(error.message));
+      .then((result) => {
+        console.log(result.user);
+        updateUserProfile(name);
+        setUser({ ...result.user, displayName: name, photoURL: null });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   //google login
   const handleGoogleSignUP = () => {

@@ -8,7 +8,7 @@ import {
   updateProfile,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebase/firebase.init"; // Ensure auth has persistence enabled
+import { auth } from "../firebase/firebase.init";
 
 export const AuthContext = createContext();
 const provider = new GoogleAuthProvider();
@@ -48,7 +48,8 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  // Observer to check auth state
+
+  // Observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -67,6 +68,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     updateUserProfile,
     logOut,
+    setUser,
   };
 
   return (
