@@ -11,7 +11,8 @@ const AddTask = () => {
     const title = formData.get("title");
     const description = formData.get("description");
     const email = user?.email;
-    const taskInfo = { title, category, description, email };
+    const date = new Date();
+    const taskInfo = { title, category, description, email, date };
     console.log(taskInfo);
     const { data } = await axios.post(
       `${import.meta.env.VITE_API_URL}/add-task`,
