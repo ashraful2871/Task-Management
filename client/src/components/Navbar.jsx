@@ -5,7 +5,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const links = (
     <>
-      {user && (
+      {user ? (
         <>
           <li>
             <NavLink to="/add-task">Add Task</NavLink>
@@ -13,19 +13,22 @@ const Navbar = () => {
           <li>
             <NavLink to="/all-task">View All Task</NavLink>
           </li>
+          <li>
+            <button onClick={logOut} className="btn btn-sm">
+              Log Out
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sign-up">Sign Up</NavLink>
+          </li>
         </>
       )}
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
-      <li>
-        <NavLink to="/sign-up">Sign Up</NavLink>
-      </li>
-      <li>
-        <button onClick={logOut} className="btn btn-sm">
-          Log Out
-        </button>
-      </li>
     </>
   );
   return (

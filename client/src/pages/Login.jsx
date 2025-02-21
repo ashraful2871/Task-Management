@@ -1,9 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signInUser } = useAuth();
+  const { signInUser, googleLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -16,6 +20,18 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => console.log(result.user))
       .catch((error) => console.log(error.message));
+  };
+  //google login
+  const handleGoogleSignUP = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+        toast.success("sign up successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="flex justify-center">
@@ -50,6 +66,20 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
         </form>
+        <div>
+          <div className="divider -mt-1">or</div>
+          <div className="flex justify-center my-4 font-semibold">
+            <button
+              onClick={handleGoogleSignUP}
+              className="flex items-center gap-2 text-lg btn border border-black btn-ghost"
+            >
+              <span className="mt-1 text-2xl">
+                <FcGoogle />
+              </span>
+              Sign Up With Google
+            </button>
+          </div>
+        </div>
         <div className="text-center  my-6">
           <h2 className="text-lg">
             Do not Have an Account?{" "}
