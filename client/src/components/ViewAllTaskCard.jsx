@@ -2,9 +2,11 @@ import axios from "axios";
 import { format } from "date-fns";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import ButtonLoading from "./ButtonLoading";
 
 const ViewAllTaskCard = ({ task, refetch }) => {
   const [selectCategory, setSelectCategory] = useState("");
+  const [loading, setLoading] = useState(false);
   const { _id, title, description, category, date } = task;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -40,6 +42,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
   };
 
   const handleEdit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const title = formData.get("title");
@@ -58,6 +61,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
       });
       refetch();
       setIsOpen(false);
+      setLoading(false);
     }
   };
 
@@ -139,9 +143,13 @@ const ViewAllTaskCard = ({ task, refetch }) => {
 
               {/* Buttons */}
               <div className="flex justify-end gap-2 mt-4">
-                <button type="submit" className="btn btn-primary">
-                  Save Changes
-                </button>
+                {loading ? (
+                  <ButtonLoading></ButtonLoading>
+                ) : (
+                  <button type="submit" className="btn btn-primary">
+                    Save Changes
+                  </button>
+                )}
                 <button
                   type="button"
                   className="btn"

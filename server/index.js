@@ -57,13 +57,13 @@ async function run() {
     //update data
     app.patch("/task/:id", async (req, res) => {
       const { id } = req.params;
-      const { title, description, selectCategory } = req.body;
+      const { title, description, category } = req.body;
       const filter = { _id: new ObjectId(id) };
       const updatedDoc = {
         $set: {
           title: title,
           description: description,
-          category: selectCategory,
+          category: category,
         },
       };
       const result = await taskCollection.updateOne(filter, updatedDoc);

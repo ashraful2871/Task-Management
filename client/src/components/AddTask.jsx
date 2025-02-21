@@ -17,9 +17,8 @@ const AddTask = () => {
     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/task`, {
       taskInfo,
     });
-    console.log(data);
   };
-  console.log(category);
+
   return (
     <div className="flex justify-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 border">
