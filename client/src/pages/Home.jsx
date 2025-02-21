@@ -1,7 +1,12 @@
 import React from "react";
+import DragAndDrop from "../components/DragAndDrop ";
 
 const Home = () => {
-  return <div>i am home</div>;
+  return (
+    <div>
+      <DragAndDrop></DragAndDrop>{" "}
+    </div>
+  );
 };
 
 export default Home;

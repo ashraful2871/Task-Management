@@ -6,7 +6,11 @@ import Loading from "./Loading";
 import useAuth from "../hooks/useAuth";
 const ViewAllTask = () => {
   const { user } = useAuth();
-  const { data: allTask, isLoading } = useQuery({
+  const {
+    data: allTask,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["all-task", user?.email],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -15,6 +19,7 @@ const ViewAllTask = () => {
       return data;
     },
   });
+
   console.log(allTask);
   if (isLoading) {
     return <Loading></Loading>;
@@ -25,7 +30,11 @@ const ViewAllTask = () => {
       <div className="grid grid-cols-3 gap-5">
         {" "}
         {allTask.map((task) => (
-          <ViewAllTaskCard key={task._id} task={task}></ViewAllTaskCard>
+          <ViewAllTaskCard
+            key={task._id}
+            task={task}
+            refetch={refetch}
+          ></ViewAllTaskCard>
         ))}
       </div>
     </div>
