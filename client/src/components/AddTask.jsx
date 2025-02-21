@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddTask = () => {
+  const [category, setCategory] = useState("");
+  const handleSubmitTask = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const taskInfo = { title, category, description };
+    console.log(taskInfo);
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/add-task`,
+      { taskInfo }
+    );
+    console.log(data);
+  };
+  console.log(category);
   return (
     <div className="flex justify-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 border">
-        <form className="card-body">
+        <form onSubmit={handleSubmitTask} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Title</span>
             </label>
             <input
               type="text"
+              name="title"
               placeholder="title"
               className="input input-bordered"
               required
@@ -20,13 +37,18 @@ const AddTask = () => {
             <label className="label">
               <span className="label-text">Category</span>
             </label>
-            <select className="select select-bordered" required>
+            <select
+              className="select select-bordered"
+              name="category"
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
               <option value="" disabled selected>
                 Select a category
               </option>
-              <option value="todo">To-Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
+              <option value="To-Do">To-Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
             </select>
           </div>
 
@@ -35,8 +57,10 @@ const AddTask = () => {
               <span className="label-text">Description</span>
             </label>
             <textarea
-              className="textarea textarea-bordered"
+              name="description"
               placeholder="Description"
+              className="textarea textarea-bordered"
+              required
             ></textarea>
           </div>
           <div className="form-control mt-6">
