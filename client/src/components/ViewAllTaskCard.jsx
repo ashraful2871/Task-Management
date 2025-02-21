@@ -3,17 +3,12 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 const ViewAllTaskCard = ({ task, refetch }) => {
+  const [selectCategory, setSelectCategory] = useState("");
   const { _id, title, description, category } = task;
   const [isOpen, setIsOpen] = useState(false);
-  const [editedTask, setEditedTask] = useState({
-    title,
-    description,
-    category,
-  });
 
   // Open modal and reset fields for the selected task
   const openModal = () => {
-    setEditedTask({ title, description, category }); // Reset values
     setIsOpen(true);
   };
 
@@ -43,11 +38,17 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     });
   };
 
-  const handleEdit = async () => {
-    const { data } = await axios.put(
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const editedTask = { title, description, selectCategory };
+    const { data } = await axios.patch(
       `${import.meta.env.VITE_API_URL}/update-task/${_id}`,
       editedTask
     );
+    console.log(data);
     if (data.modifiedCount > 0) {
       Swal.fire({
         title: "Updated!",
@@ -83,37 +84,72 @@ const ViewAllTaskCard = ({ task, refetch }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-lg font-bold mb-4">Edit Task</h2>
-            <input
-              type="text"
-              className="input input-bordered w-full mb-2"
-              value={editedTask.title}
-              onChange={(e) =>
-                setEditedTask({ ...editedTask, title: e.target.value })
-              }
-            />
-            <textarea
-              className="textarea textarea-bordered w-full mb-2"
-              value={editedTask.description}
-              onChange={(e) =>
-                setEditedTask({ ...editedTask, description: e.target.value })
-              }
-            ></textarea>
-            <input
-              type="text"
-              className="input input-bordered w-full mb-2"
-              value={editedTask.category}
-              onChange={(e) =>
-                setEditedTask({ ...editedTask, category: e.target.value })
-              }
-            />
-            <div className="flex justify-end gap-2 mt-4">
-              <button className="btn btn-primary" onClick={handleEdit}>
-                Save Changes
-              </button>
-              <button className="btn" onClick={() => setIsOpen(false)}>
-                Cancel
-              </button>
-            </div>
+
+            {/* Form Starts Here */}
+            <form onSubmit={handleEdit}>
+              {/* Title Input */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Title</span>
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  className="input input-bordered w-full mb-2"
+                  value={title}
+                  required
+                />
+              </div>
+
+              {/* Description Textarea */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Description</span>
+                </label>
+                <textarea
+                  name="description"
+                  className="textarea textarea-bordered w-full mb-2"
+                  value={description}
+                  required
+                ></textarea>
+              </div>
+
+              {/* Category Dropdown */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Category</span>
+                </label>
+                <select
+                  name="category"
+                  className="select select-bordered w-full mb-2"
+                  value={category}
+                  onChange={(e) => setSelectCategory(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a category
+                  </option>
+                  <option value="To-Do">To-Do</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex justify-end gap-2 mt-4">
+                <button type="submit" className="btn btn-primary">
+                  Save Changes
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+            {/* Form Ends Here */}
           </div>
         </div>
       )}

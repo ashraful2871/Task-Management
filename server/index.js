@@ -52,6 +52,22 @@ async function run() {
       const result = await taskCollection.deleteOne(query);
       res.send(result);
     });
+
+    //update data
+    app.patch("/update-task/:id", async (req, res) => {
+      const { id } = req.params;
+      const { title, description, selectCategory } = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updatedDoc = {
+        $set: {
+          title: title,
+          description: description,
+          category: selectCategory,
+        },
+      };
+      const result = await taskCollection.updateOne(filter, updatedDoc);
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
