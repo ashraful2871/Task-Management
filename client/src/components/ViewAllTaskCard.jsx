@@ -68,12 +68,16 @@ const ViewAllTaskCard = ({ task, refetch }) => {
   return (
     <>
       {/* Task Card */}
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
+      <div className="card bg-base-100 shadow-xl flex flex-col h-full">
+        <div className="card-body flex flex-col flex-grow">
           <h2 className="card-title">{title}</h2>
           <p>{description}</p>
           <p>{category}</p>
           <p>{format(new Date(date), "dd MMM yyyy")}</p>
+
+          {/* This div will push the buttons to the bottom */}
+          <div className="flex-grow"></div>
+
           <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={openModal}>
               Edit

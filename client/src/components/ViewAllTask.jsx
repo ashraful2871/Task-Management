@@ -97,7 +97,7 @@ const ViewAllTask = () => {
           {Object.keys(tasks).map((category) => (
             <div
               key={category}
-              className="bg-gray-200 p-4 rounded-md min-h-[300px]"
+              className="bg-gray-200 p-4 rounded-md min-h-[300px] flex flex-col"
             >
               <h3 className="text-lg font-bold mb-3">{category}</h3>
               <Droppable droppableId={category}>
@@ -105,7 +105,7 @@ const ViewAllTask = () => {
                   <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
-                    className="space-y-3"
+                    className="space-y-3 flex-grow"
                   >
                     {tasks[category].map((task, index) => (
                       <Draggable
