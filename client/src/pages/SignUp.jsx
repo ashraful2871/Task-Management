@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import axios from "axios";
 const SignUp = () => {
   const { signUpUser, googleLogin, updateUserProfile, setUser } = useAuth();
   const navigate = useNavigate();
@@ -21,6 +22,14 @@ const SignUp = () => {
         console.log(result.user);
         updateUserProfile(name);
         setUser({ ...result.user, displayName: name, photoURL: null });
+        const userInfo = {
+          name: name,
+          email: result?.user?.email,
+          userId: result?.user?.uid,
+        };
+        axios.post(`${import.meta.env.VITE_API_URL}/user-info`, userInfo);
+        navigate("/");
+        toast.success("sign up successfully");
       })
       .catch((error) => {
         console.log(error.message);
@@ -31,6 +40,13 @@ const SignUp = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+          userId: result?.user?.uid,
+        };
+        axios.post(`${import.meta.env.VITE_API_URL}/user-info`, userInfo);
+        // console.log(data);
         navigate("/");
         toast.success("sign up successfully");
       })

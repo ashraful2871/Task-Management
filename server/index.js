@@ -27,6 +27,7 @@ async function run() {
 
     const db = client.db("TaskDB");
     const taskCollection = db.collection("tasks");
+    const userCollection = db.collection("users");
 
     //add task
     app.post("/add-task", async (req, res) => {
@@ -68,6 +69,19 @@ async function run() {
       const result = await taskCollection.updateOne(filter, updatedDoc);
       res.send(result);
     });
+
+    //user info
+    app.post("/user-info", async (req, res) => {
+      const userInfo = req.body;
+      const query = { email: userInfo.email };
+      const existingUser = await userCollection.findOne(query);
+      if (existingUser) {
+        return;
+      }
+      const result = await userCollection.insertOne(userInfo);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(

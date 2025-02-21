@@ -3,9 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
-  const { signInUser, googleLogin } = useAuth();
+  const { signInUser, googleLogin, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const handleSubmit = (e) => {
@@ -26,8 +27,16 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         console.log(result.user);
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+          userId: result?.user?.uid,
+        };
+        axios.post(`${import.meta.env.VITE_API_URL}/user-info`, userInfo);
+        // console.log(data);
         navigate(location?.state ? location.state : "/");
         toast.success("sign up successfully");
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
