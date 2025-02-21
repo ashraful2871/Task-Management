@@ -10,7 +10,13 @@ const Navbar = () => {
         <NavLink to="/all-task">View All Task</NavLink>
       </li>
       <li>
-        <NavLink to="/logout">Add Task</NavLink>
+        <NavLink to="/log-out">Log Out</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li>
+        <NavLink to="/sign-up">Sign Up</NavLink>
       </li>
     </>
   );

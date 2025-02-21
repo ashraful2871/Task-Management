@@ -1,12 +1,7 @@
 import React from "react";
-import SignUp from "./SignUp";
 
 const Home = () => {
-  return (
-    <div>
-      <SignUp></SignUp>
-    </div>
-  );
+  return <div>i am home</div>;
 };
 
 export default Home;
