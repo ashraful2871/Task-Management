@@ -1,9 +1,9 @@
-import React, { useDebugValue } from "react";
+import React from "react";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
-
+import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
-  const { signUpUser } = useAuth();
+  const { signUpUser, googleLogin } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -17,6 +17,16 @@ const SignUp = () => {
     signUpUser(email, password)
       .then((result) => console.log(result.user))
       .catch((error) => console.log(error.message));
+  };
+  //google login
+  const handleGoogleSignUP = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="flex justify-center">
@@ -63,6 +73,20 @@ const SignUp = () => {
             <button className="btn btn-primary">SignUp</button>
           </div>
         </form>
+        <div>
+          <div className="divider -mt-1">or</div>
+          <div className="flex justify-center my-4 font-semibold">
+            <button
+              onClick={handleGoogleSignUP}
+              className="flex items-center gap-2 text-lg btn border border-black btn-ghost"
+            >
+              <span className="mt-1 text-2xl">
+                <FcGoogle />
+              </span>
+              Sign Up With Google
+            </button>
+          </div>
+        </div>
         <div className="text-center  my-6">
           <h2 className="text-lg">
             Already Have an Account?{" "}
