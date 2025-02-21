@@ -1,11 +1,11 @@
 import Lottie from "lottie-react";
 import React from "react";
-import login from "../../public/login.json";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import axios from "axios";
+import SignUp from "../../public/signUp.json";
 const SignUpPAge = () => {
   const { signUpUser, googleLogin, updateUserProfile, setUser } = useAuth();
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const SignUpPAge = () => {
       {/* Left Side - Login Form */}
       <div className="w-1/2 bg-purple-50 flex items-center justify-center">
         <div className="relative w-96">
-          <Lottie animationData={login} loop={true} />
+          <Lottie animationData={SignUp} loop={true} />
         </div>
       </div>
 
@@ -148,8 +148,8 @@ const SignUpPAge = () => {
 
           <p className="mt-4 text-gray-600 text-center">
             Don’t have an account?{" "}
-            <Link to="/sign-up" className="text-purple-600 hover:underline">
-              Sign up
+            <Link to="/login" className="text-purple-600 hover:underline">
+              Login
             </Link>
           </p>
         </div>
