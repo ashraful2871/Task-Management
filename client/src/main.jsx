@@ -12,6 +12,8 @@ import SignUp from "./pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Privet from "./privet/Privet";
 import { Toaster } from "react-hot-toast";
+import LoginPage from "./components/LoginPage";
+import SignUpPAge from "./components/SignUpPAge";
 
 const router = createBrowserRouter([
   {
@@ -40,11 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <LoginPage></LoginPage>,
       },
       {
         path: "/sign-up",
-        element: <SignUp></SignUp>,
+        element: <SignUpPAge></SignUpPAge>,
       },
     ],
   },

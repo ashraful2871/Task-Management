@@ -1,10 +1,9 @@
 import Lottie from "lottie-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import login from "../../public/login.json";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-
-const LoginPage = () => {
+const SignUpPAge = () => {
   return (
     <div className="flex h-[800px]">
       {/* Left Side - Login Form */}
@@ -20,6 +19,14 @@ const LoginPage = () => {
           <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
           <p className="text-gray-500 mb-6">Please enter your details</p>
 
+          <div className="mb-4">
+            <label className="block text-gray-700">Name</label>
+            <input
+              type="text"
+              className="w-full p-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700">Email address</label>
             <input
@@ -40,11 +47,9 @@ const LoginPage = () => {
 
           <div className="flex items-center justify-between mb-4">
             <label className="flex items-center">
-              <input type="checkbox" className="mr-2" /> Remember for 30 days
+              <input type="checkbox" className="mr-2" /> Accept trams &
+              condition
             </label>
-            <a href="#" className="text-purple-600 hover:underline">
-              Forgot password
-            </a>
           </div>
 
           <button className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition">
@@ -62,9 +67,9 @@ const LoginPage = () => {
           </button>
 
           <p className="mt-4 text-gray-600 text-center">
-            Don’t have an account?{" "}
-            <Link to="/sign-up" className="text-purple-600 hover:underline">
-              Sign up
+            Already have an account?{" "}
+            <Link to="/login" className="text-purple-600 hover:underline">
+              Login
             </Link>
           </p>
         </div>
@@ -73,4 +78,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPAge;
