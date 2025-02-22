@@ -11,9 +11,6 @@ const Navbar = () => {
             <NavLink to="/add-task">Add Task</NavLink>
           </li>
           <li>
-            <NavLink to="/all-task">View All Task</NavLink>
-          </li>
-          <li>
             <button onClick={logOut} className="btn btn-sm">
               Log Out
             </button>

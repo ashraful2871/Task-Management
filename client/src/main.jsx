@@ -22,7 +22,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: (
+          <Privet>
+            <Home></Home>
+          </Privet>
+        ),
       },
       {
         path: "/add-task",

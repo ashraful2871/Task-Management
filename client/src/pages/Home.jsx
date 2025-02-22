@@ -1,11 +1,13 @@
 import React from "react";
-import DragAndDrop from "../components/DragAndDrop ";
 import LoginPage from "../components/LoginPage";
+import useAuth from "../hooks/useAuth";
+import ViewAllTask from "../components/ViewAllTask";
 
 const Home = () => {
+  const { user } = useAuth();
   return (
     <div>
-      <LoginPage></LoginPage>
+      <ViewAllTask></ViewAllTask>
     </div>
   );
 };
