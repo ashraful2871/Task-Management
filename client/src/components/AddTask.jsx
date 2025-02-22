@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import ButtonLoading from "./ButtonLoading";
 
 const AddTask = () => {
   const { user } = useAuth();
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const handleSubmitTask = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData(e.target);
     const title = formData.get("title");
@@ -17,6 +23,11 @@ const AddTask = () => {
     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/task`, {
       taskInfo,
     });
+    if (data.insertedId) {
+      toast.success("Task dded successfully");
+      navigate("/");
+    }
+    setLoading(false);
   };
 
   return (
@@ -66,7 +77,11 @@ const AddTask = () => {
             ></textarea>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add Task</button>
+            {loading ? (
+              <ButtonLoading width="w-full"></ButtonLoading>
+            ) : (
+              <button className="btn btn-primary">Add Task</button>
+            )}
           </div>
         </form>
       </div>

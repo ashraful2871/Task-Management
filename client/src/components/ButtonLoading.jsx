@@ -1,9 +1,9 @@
 import React from "react";
 
-const ButtonLoading = () => {
+const ButtonLoading = ({ width }) => {
   return (
     <div>
-      <button className="btn btn-square btn-primary">
+      <button className={`btn ${width} btn-square btn-primary`}>
         <span className="loading loading-spinner"></span>
       </button>
     </div>
