@@ -43,7 +43,7 @@ A **Task Management Application** that allows users to **add, edit, delete, and 
 
 ## 🎬 Demo
 
-🔗 **Live Demo**: [Task Management App](https://task-management.vercel.app) _(Update with actual URL when deployed)_
+🔗 **Live Demo**: [Task Management App](https://task-mannagement.web.app)
 
 ---
 
@@ -76,8 +76,8 @@ A **Task Management Application** that allows users to **add, edit, delete, and 
 ### 🔹 Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/task-management.git
-cd task-management
+git https://github.com/ashraful2871/Task-Management.git
+cd Task-Management
 ```
 
 ### 📌 Backend Setup
@@ -211,8 +211,7 @@ Your app should now be live 🎉.
 
 ## 👥 Contributors
 
-- **Your Name** - _Full Stack Developer_
-- _Open for contributions!_
+- **Your Name** - _Md. Ashraful Islam_
 
 ---
 
@@ -221,5 +220,3 @@ Your app should now be live 🎉.
 This project is licensed under the **MIT License**.
 
 ---
-
-This `README.md` is **clear, structured, and provides all necessary setup instructions** while keeping your credentials safe. 🚀 Let me know if you need any changes! 😊
