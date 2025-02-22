@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import ButtonLoading from "./ButtonLoading";
+import toast from "react-hot-toast";
 
 const ViewAllTaskCard = ({ task, refetch }) => {
   const [selectCategory, setSelectCategory] = useState("");
@@ -49,6 +50,11 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     const title = formData.get("title");
     const description = formData.get("description");
     const editedTask = { title, description, selectCategory };
+    if (category === selectCategory) {
+      toast.error(`The category is already set to ${selectCategory}.`);
+      setLoading(false);
+      return;
+    }
     const { data } = await axios.patch(
       `${import.meta.env.VITE_API_URL}/task/${_id}`,
       editedTask
@@ -63,6 +69,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
       refetch();
       setIsOpen(false);
       setLoading(false);
+      setSelectCategory("");
     }
   };
 
@@ -134,7 +141,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
                 <input
                   type="text"
                   name="title"
-                  className="input input-bordered w-full mb-2"
+                  className="w-full p-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-2"
                   value={title}
                   required
                 />
@@ -147,7 +154,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
                 </label>
                 <textarea
                   name="description"
-                  className="textarea textarea-bordered w-full mb-2"
+                  className="textarea textarea-bordered w-full p-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-2 "
                   value={description}
                   required
                 ></textarea>
@@ -160,8 +167,8 @@ const ViewAllTaskCard = ({ task, refetch }) => {
                 </label>
                 <select
                   name="category"
-                  className="select select-bordered w-full mb-2"
-                  value={category}
+                  className="select select-bordered w-full p-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-2"
+                  value={selectCategory}
                   onChange={(e) => setSelectCategory(e.target.value)}
                   required
                 >
@@ -189,7 +196,10 @@ const ViewAllTaskCard = ({ task, refetch }) => {
                 <button
                   type="button"
                   className="btn font-semibold text-base bg-red-500 hover:bg-red-600 text-white"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setSelectCategory("");
+                  }}
                 >
                   Cancel
                 </button>
