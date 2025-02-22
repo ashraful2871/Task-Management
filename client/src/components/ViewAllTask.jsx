@@ -88,20 +88,33 @@ const ViewAllTask = () => {
   if (isLoading) {
     return <Loading />;
   }
+  // ${category === "To-Do" && "bg-red-50"} ${
+  //   category === "In Progress" && "bg-yellow-50"
+  // } ${
+  //   category === "Done" && "bg-green-50"
+  // }
 
   return (
     <div>
-      <h2 className="text-4xl font-bold mb-4 text-center text-purple-700">
+      <h2 className="text-4xl  font-bold mb-4 text-center text-purple-700">
         View All Tasks
       </h2>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {Object.keys(tasks).map((category) => (
             <div
               key={category}
-              className="bg-gray-200 p-4 rounded-md min-h-[300px] flex flex-col"
+              className={`border border-purple-400 p-4 rounded-md min-h-[300px] flex flex-col`}
             >
-              <h3 className="text-lg font-bold mb-3">{category}</h3>
+              <h3
+                className={`text-lg font-bold mb-3 text-center ${
+                  category === "To-Do" && "text-red-600"
+                } ${category === "In Progress" && "text-yellow-400"} ${
+                  category === "Done" && "text-green-400"
+                }`}
+              >
+                {category}
+              </h3>
               <Droppable droppableId={category}>
                 {(provided) => (
                   <div

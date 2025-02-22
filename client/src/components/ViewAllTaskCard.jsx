@@ -82,7 +82,13 @@ const ViewAllTaskCard = ({ task, refetch }) => {
   return (
     <>
       {/* Task Card */}
-      <div className="card bg-base-100 shadow-xl flex flex-col h-[300px]">
+      <div
+        className={`card ${category === "To-Do" && "bg-red-50"} ${
+          category === "In Progress" && "bg-yellow-50"
+        } ${
+          category === "Done" && "bg-green-50"
+        } bg-base-100 shadow-xl flex flex-col h-[300px]`}
+      >
         <div className="card-body flex flex-col flex-grow">
           <h2 className="card-title">{title}</h2>
           {/* Show truncated or full description based on state */}
