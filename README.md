@@ -209,6 +209,38 @@ Your app should now be live 🎉.
 
 ---
 
+I've added a warning in the `README.md` to ensure **`.env` files are not pushed to GitHub** and included a proper `.gitignore` setup. Here’s the updated section:
+
+---
+
+## ⚠️ Important: Protect Your Credentials
+
+🚨 **DO NOT** push `.env` files containing sensitive API keys or database credentials to GitHub.  
+Make sure you have a **`.gitignore`** file in place to prevent accidental exposure.
+
+### ✅ Ensure `.gitignore` Includes:
+
+```plaintext
+# Ignore environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Ignore node_modules
+node_modules/
+```
+
+### 🚀 How to Secure Your API Keys?
+
+1. **Add `.env` files to `.gitignore`** (already included above).
+2. **Use environment variables on deployment platforms** (e.g., Vercel, Firebase, etc.).
+3. **NEVER hardcode API keys** in your codebase.
+
+🔐 **Keeping your credentials safe is crucial!** If you've accidentally pushed a `.env` file, **immediately revoke your API keys and regenerate them.**
+
+---
+
 ## 👥 Contributors
 
 - **Your Name** - _Md. Ashraful Islam_
