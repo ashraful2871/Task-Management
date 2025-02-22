@@ -1,1 +1,226 @@
- 
+Here’s a comprehensive `README.md` file for your **Task Management Application**, following all your project requirements and installation guidelines while ensuring your credentials are not exposed.
+
+---
+
+# 📝 Task Management Application
+
+A **Task Management Application** that allows users to **add, edit, delete, and reorder tasks** with a drag-and-drop interface. Tasks are categorized into **To-Do, In Progress, and Done**, and changes are instantly saved to a database for persistence.
+
+## 🚀 Features
+
+- 🔐 **Authentication**: Users must sign in with **Google** (via Firebase Authentication).
+- ✅ **Task Management**:
+  - Add, edit, delete, and reorder tasks.
+  - Drag-and-drop functionality to move tasks between categories.
+- 📡 **Real-time Sync**:
+  - Instant updates using **MongoDB Change Streams / WebSockets**.
+- 💾 **Database & Persistence**:
+  - All tasks are stored in **MongoDB** via an **Express.js API**.
+- 🎨 **Modern UI**:
+  - Built with **Vite + React**, featuring a **clean, responsive design**.
+- 📱 **Fully Responsive**:
+  - Optimized for **both desktop and mobile** users.
+
+## 📸 Screenshots
+
+> ⚠️ _(Please add a screenshot of your project here)_
+
+---
+
+## 📂 Table of Contents
+
+- [Demo](#-demo)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [API Endpoints](#-api-endpoints)
+- [Deployment](#-deployment)
+- [Troubleshooting](#-troubleshooting)
+- [Contributors](#-contributors)
+- [License](#-license)
+
+---
+
+## 🎬 Demo
+
+🔗 **Live Demo**: [Task Management App](https://task-management.vercel.app) _(Update with actual URL when deployed)_
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**
+
+- Vite.js + React
+- Tailwind CSS + DaisyUI
+- Firebase Authentication
+- **Drag & Drop**: `react-beautiful-dnd` / `@hello-pangea/dnd`
+- **State Management**: `@tanstack/react-query`
+
+**Backend:**
+
+- Node.js + Express.js
+- MongoDB (via `mongodb` package)
+- **Real-time Sync**: WebSockets / Change Streams
+
+---
+
+## 📥 Installation
+
+### 🔧 Prerequisites
+
+- Install **Node.js** (>=16)
+- Install **MongoDB** (if running locally)
+- Install **Git**
+
+### 🔹 Clone the Repository
+
+```sh
+git clone https://github.com/your-username/task-management.git
+cd task-management
+```
+
+### 📌 Backend Setup
+
+1. **Navigate to the server directory**:
+   ```sh
+   cd server
+   ```
+2. **Install dependencies**:
+   ```sh
+   npm install
+   ```
+3. **Create a `.env` file** and add your MongoDB credentials:
+   ```env
+   USER_DB=your-mongo-db-name
+   USER_PASS=your-mongo-db-password
+   ```
+4. **Start the backend server**:
+   ```sh
+   npm start
+   ```
+   The API should now be running on `http://localhost:5000`.
+
+### 🎨 Frontend Setup
+
+1. **Navigate to the client directory**:
+   ```sh
+   cd ../client
+   ```
+2. **Install dependencies**:
+   ```sh
+   npm install
+   ```
+3. **Create a `.env.local` file** and add your Firebase credentials:
+   ```env
+   VITE_API_URL=http://localhost:5000
+   VITE_apiKey=your-api-key
+   VITE_authDomain=your-auth-domain
+   VITE_projectId=your-project-id
+   VITE_storageBucket=your-storage-bucket
+   VITE_messagingSenderId=your-messaging-sender-id
+   VITE_appId=your-app-id
+   ```
+4. **Run the frontend**:
+   ```sh
+   npm run dev
+   ```
+   Your app should now be running at `http://localhost:5173`.
+
+---
+
+## ⚙️ Configuration
+
+### 🔑 Firebase Authentication Setup
+
+1. Go to **[Firebase Console](https://console.firebase.google.com/)**.
+2. Create a new project and enable **Google Authentication**.
+3. Get the API credentials and add them to `.env.local` in the frontend.
+
+### 🗄 MongoDB Setup
+
+- If using **MongoDB Atlas**, create a database and obtain the connection URI.
+- If running locally, ensure **MongoDB is installed and running**.
+
+---
+
+## 🎯 Usage
+
+1. **Sign in with Google** to access the app.
+2. **Create tasks** under "To-Do".
+3. **Drag tasks** between categories.
+4. **Edit or delete tasks**.
+5. **Reorder tasks** within categories.
+
+---
+
+## 🔌 API Endpoints
+
+| Method     | Endpoint     | Description                                        |
+| ---------- | ------------ | -------------------------------------------------- |
+| **POST**   | `/tasks`     | Add a new task                                     |
+| **GET**    | `/tasks`     | Retrieve all tasks for the logged-in user          |
+| **PUT**    | `/tasks/:id` | Update task details (title, description, category) |
+| **DELETE** | `/tasks/:id` | Delete a task                                      |
+
+---
+
+## 🚀 Deployment
+
+### 🎯 Deploy Backend (Vercel)
+
+1. Install **Vercel CLI**:
+   ```sh
+   npm install -g vercel
+   ```
+2. Deploy backend:
+   ```sh
+   vercel --prod
+   ```
+
+### 🎯 Deploy Frontend (Vercel)
+
+1. Deploy frontend:
+   ```sh
+   vercel --prod
+   ```
+
+Your app should now be live 🎉.
+
+---
+
+## ❓ Troubleshooting
+
+- **MongoDB not connecting?**
+
+  - Check `.env` and verify credentials.
+  - Ensure MongoDB is running (`mongod`).
+
+- **Firebase authentication issues?**
+
+  - Verify API keys and Firebase settings.
+
+- **Vite issues?**
+  - Try clearing cache:
+    ```sh
+    rm -rf node_modules package-lock.json
+    npm install
+    ```
+
+---
+
+## 👥 Contributors
+
+- **Your Name** - _Full Stack Developer_
+- _Open for contributions!_
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+This `README.md` is **clear, structured, and provides all necessary setup instructions** while keeping your credentials safe. 🚀 Let me know if you need any changes! 😊
