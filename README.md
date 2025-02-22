@@ -1,7 +1,3 @@
-Here’s a comprehensive `README.md` file for your **Task Management Application**, following all your project requirements and installation guidelines while ensuring your credentials are not exposed.
-
----
-
 # 📝 Task Management Application
 
 A **Task Management Application** that allows users to **add, edit, delete, and reorder tasks** with a drag-and-drop interface. Tasks are categorized into **To-Do, In Progress, and Done**, and changes are instantly saved to a database for persistence.
@@ -23,7 +19,7 @@ A **Task Management Application** that allows users to **add, edit, delete, and 
 
 ## 📸 Screenshots
 
-> ⚠️ _(Please add a screenshot of your project here)_
+![Login Page](https://i.ibb.co.com/tgnFHKq/Screenshot-2025-02-22-171908.png)
 
 ---
 

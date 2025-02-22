@@ -49,7 +49,11 @@ const Navbar = () => {
               <img
                 referrerPolicy="no-referrer"
                 alt="Tailwind CSS Navbar component"
-                src={user?.photoURL}
+                src={
+                  user
+                    ? user?.photoURL
+                    : "https://i.ibb.co.com/5jL18Qz/avater.webp"
+                }
               />
             </div>
           </div>
