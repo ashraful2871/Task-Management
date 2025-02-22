@@ -19,7 +19,11 @@ const LoginPage = () => {
     const password = formData.get("password");
 
     signInUser(email, password)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+        toast.success("Signed up successfully");
+      })
       .catch((error) => console.log(error.message));
   };
 
