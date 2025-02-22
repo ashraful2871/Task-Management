@@ -37,14 +37,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/all-task",
-        element: (
-          <Privet>
-            <ViewAllTask></ViewAllTask>
-          </Privet>
-        ),
-      },
-      {
         path: "/login",
         element: <LoginPage></LoginPage>,
       },
