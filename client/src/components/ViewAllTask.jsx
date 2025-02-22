@@ -91,7 +91,9 @@ const ViewAllTask = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">View All Tasks</h2>
+      <h2 className="text-4xl font-bold mb-4 text-center text-purple-700">
+        View All Tasks
+      </h2>
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="grid grid-cols-3 gap-5">
           {Object.keys(tasks).map((category) => (

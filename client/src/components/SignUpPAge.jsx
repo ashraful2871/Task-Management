@@ -68,8 +68,12 @@ const SignUpPAge = () => {
       {/* Right Side - Illustration */}
       <div className="w-1/2 flex items-center justify-center bg-white p-8">
         <div className="max-w-sm w-full">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-500 mb-6">Please enter your details</p>
+          <h1 className="text-3xl font-bold text-gray-900 text-center">
+            Create your account
+          </h1>
+          <p className="text-gray-500 mb-6 text-center">
+            Please enter your details
+          </p>
 
           {/* ✅ Form Starts Here */}
           <form onSubmit={handleSubmit}>
@@ -126,9 +130,9 @@ const SignUpPAge = () => {
 
             <button
               type="submit"
-              className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition"
+              className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition font-semibold text-base"
             >
-              Sign in
+              Sign Up
             </button>
           </form>
           {/* ✅ Form Ends Here */}
