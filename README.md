@@ -20,6 +20,9 @@ A **Task Management Application** that allows users to **add, edit, delete, and 
 ## 📸 Screenshots
 
 ![Login Page](https://i.ibb.co.com/tgnFHKq/Screenshot-2025-02-22-171908.png)
+![Sign Up Page](https://i.ibb.co.com/tMn4tGtp/Screenshot-2025-02-22-172114.png)
+![View All Tasks](https://i.ibb.co.com/qL8wthq0/Screenshot-2025-02-22-172217.png)
+![Add Tasks](https://i.ibb.co.com/27tjqM4x/Screenshot-2025-02-22-172233.png)
 
 ---
 
