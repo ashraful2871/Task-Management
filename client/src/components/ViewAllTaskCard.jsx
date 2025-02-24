@@ -29,7 +29,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const { data } = await axios.delete(
-          `${import.meta.env.VITE_API_URL}/task/${id}`
+          `${import.meta.env.VITE_API_URL}/tasks/${id}`
         );
         if (data.deletedCount > 0) {
           Swal.fire({
@@ -56,7 +56,7 @@ const ViewAllTaskCard = ({ task, refetch }) => {
       return;
     }
     const { data } = await axios.patch(
-      `${import.meta.env.VITE_API_URL}/task/${_id}`,
+      `${import.meta.env.VITE_API_URL}/tasks/${_id}`,
       editedTask
     );
     console.log(data);

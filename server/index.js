@@ -30,22 +30,22 @@ async function run() {
     const userCollection = db.collection("users");
 
     //add task
-    app.post("/task", async (req, res) => {
+    app.post("/tasks", async (req, res) => {
       const { taskInfo } = req.body;
       const result = await taskCollection.insertOne(taskInfo);
       res.send(result);
     });
 
     //get all task
-    app.get("/task/:email", async (req, res) => {
-      const { email } = req.params;
+    app.get("/tasks", async (req, res) => {
+      const { email } = req.headers;
       const query = { email: email };
       const result = await taskCollection.find(query).toArray();
       res.send(result);
     });
 
     ///delete task
-    app.delete("/task/:id", async (req, res) => {
+    app.delete("/tasks/:id", async (req, res) => {
       const { id } = req.params;
       const query = {
         _id: new ObjectId(id),
@@ -55,15 +55,15 @@ async function run() {
     });
 
     //update data
-    app.patch("/task/:id", async (req, res) => {
+    app.patch("/tasks/:id", async (req, res) => {
       const { id } = req.params;
-      const { title, description, category } = req.body;
+      const { title, description, selectCategory } = req.body;
       const filter = { _id: new ObjectId(id) };
       const updatedDoc = {
         $set: {
           title: title,
           description: description,
-          category: category,
+          category: selectCategory,
         },
       };
       const result = await taskCollection.updateOne(filter, updatedDoc);

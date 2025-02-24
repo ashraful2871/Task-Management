@@ -16,7 +16,8 @@ const ViewAllTask = () => {
     queryKey: ["all-task", user?.email],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/task/${user?.email}`
+        `${import.meta.env.VITE_API_URL}/tasks`,
+        { headers: { email: user?.email } }
       );
       return data;
     },
@@ -73,7 +74,7 @@ const ViewAllTask = () => {
       });
 
       await axios.patch(
-        `${import.meta.env.VITE_API_URL}/task/${movedItem._id}`,
+        `${import.meta.env.VITE_API_URL}/tasks/${movedItem._id}`,
         {
           title: movedItem.title,
           description: movedItem.description,

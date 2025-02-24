@@ -20,7 +20,7 @@ const AddTask = () => {
     const date = new Date();
     const taskInfo = { title, category, description, email, date };
     console.log(taskInfo);
-    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/task`, {
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/tasks`, {
       taskInfo,
     });
     if (data.insertedId) {
@@ -45,6 +45,7 @@ const AddTask = () => {
               <input
                 type="text"
                 name="title"
+                maxLength={50}
                 placeholder="title"
                 className="w-full p-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-2"
                 required
